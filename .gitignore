@@ -27,4 +27,5 @@ build/Release
 node_modules
 
 # Framework Libs
-vendors
+src/vendors/*
+!src/vendors/*.module.js

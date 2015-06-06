@@ -7,7 +7,7 @@ var sh = require('shelljs');
 var uglify = require("gulp-uglify");
 
 var paths = {
-    mainjs: ['./src/**/*.module.js', './src/**/*.js'],
+    mainjs: ['./src/**/*.module.js', './src/**/*.js', '!./src/vendors/**/*', '!src/frameworks.js', '!src/angular-model.js'],
     bundlejs: [
         './src/vendors/lodash/lodash.min.js',
         './src/vendors/underscore.string/dist/underscore.string.min.js',

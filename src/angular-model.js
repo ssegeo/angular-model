@@ -1,0 +1,1 @@
+angular.module('angular.model', ['ngResource', 'lodash', 'postal']);
