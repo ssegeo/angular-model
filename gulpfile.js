@@ -12,6 +12,7 @@ var paths = {
         './src/vendors/lodash/lodash.min.js',
         './src/vendors/underscore.string/dist/underscore.string.min.js',
         './src/vendors/postal.js/lib/postal.min.js',
+        './src/vendors/angular/angular.js',
         './src/vendors/angular-resource/angular-resource.min.js',
         './src/vendors/*.module.js'
     ]
