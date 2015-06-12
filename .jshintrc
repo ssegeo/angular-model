@@ -23,6 +23,16 @@
     "localStorage": true,
     "sessionStorage": true,
     "window": true,
-    "this": true
+    "this": true,
+    "beforeEach": true,
+    "it": true,
+    "describe": true,
+    "expect": true,
+    "module": true,
+    "inject": true,
+    "afterEach": true,
+    "assert": true, 
+    "_": true,
+    "postal": true
   }
 }
