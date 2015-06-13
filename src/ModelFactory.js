@@ -2,25 +2,30 @@
     angular.module('angular.model')
         .factory('ModelFactory', ModelFactory);
 
-    ModelFactory.$inject = ['_', 'postal', 'ModelUtilitiesFactory', 'qUtilService'];
+    ModelFactory.$inject = ['$resource', '_', 'postal', 'ModelUtilitiesFactory', 'qUtilService'];
 
-    function ModelFactory(_, postal, ModelUtilities, qUtil) {
+    function ModelFactory($resource, _, postal, ModelUtilities, qUtil) {
         function Model(attrs, options) {
             attrs || (attrs = {});
             options || (options = {});
+
+            // comment out when in production
+            // if (!angular.isDefined(this.$resource)) {
+            //     throw new Error('Undefined $resource: Missing Model Remote End Points');
+            // }
 
             angular.extend(this, {
                 $uid: _.uniqueId(this.$channelName),
                 $id: _.uniqueId('m'),
             });
 
-            this.fn = new ModelUtilities(this);
+            this.$fn = new ModelUtilities(this);
 
             // bind model specific utility functions|methods to the model context
-            angular.isObject(this.utils) && qUtil.bindObject(this.utils, this);
+            angular.isObject(this.$utils) && qUtil.bindObject(this.$utils, this);
 
             // setup model's channel instance
-            this.$channel = postal.channel(this.$channelName + '.' + this.fn.getId() + '.sync');
+            this.$channel = postal.channel(this.$channelName + '.' + this.$fn.getId() + '.sync');
 
             // setup local model syncs for attribute changes
             this.$channel.subscribe('*.changed', _attributeChanged.bind(this));
@@ -105,6 +110,5 @@
                 delete this[envelope.$attr];
             }
         }
-
     }
 })(angular);

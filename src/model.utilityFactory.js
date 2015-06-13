@@ -12,7 +12,8 @@
                 getId: getId,
                 save: save,
                 remove: remove,
-                isBusy: isBusy
+                isBusy: isBusy,
+                isNew: isNew
             });
 
             qUtil.bindObject(this, $modelInstance);
@@ -52,6 +53,14 @@
              */
             function isBusy() {
                 return this.$busy;
+            }
+
+            /**
+             * determine a model is newl created
+             * @return {Boolean}
+             */
+            function isNew() {
+                return !angular.isDefined(this[this.$idAttribute]);
             }
         }
 

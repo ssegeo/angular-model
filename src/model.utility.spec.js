@@ -38,28 +38,28 @@ describe('Model Utitlity Functions', function () {
 
     describe('getId()', function () {
         it('is defined', function () {
-            assert.isFunction(model.fn.getId);
+            assert.isFunction(model.$fn.getId);
         });
 
         it('always returns a unique id for a model instance', function () {
             var model = new Model();
 
             // before explicitly setting an id for the model
-            expect(model.fn.getId()).to.be.ok;
+            expect(model.$fn.getId()).to.be.ok;
 
             // implicit model id
             model.id = 809;
-            expect(model.fn.getId()).to.be.equal(809);
+            expect(model.$fn.getId()).to.be.equal(809);
         });
     });
 
     describe('save(): Persistently Save Model Attributes to the server', function () {
         it('is defined', function () {
-            assert.isFunction(model.fn.save);
+            assert.isFunction(model.$fn.save);
         });
 
         it('returns a promise', function () {
-            var promise = model.fn.save();
+            var promise = model.$fn.save();
 
             assert.isFunction(promise.then);
         });
@@ -67,11 +67,11 @@ describe('Model Utitlity Functions', function () {
 
     describe('remove(): Persistently delete a Model', function () {
         it('is defined', function () {
-            assert.isFunction(model.fn.remove);
+            assert.isFunction(model.$fn.remove);
         });
 
         it('returns a promise', function () {
-            var promise = model.fn.remove();
+            var promise = model.$fn.remove();
 
             assert.isFunction(promise.then);
         });
@@ -79,7 +79,26 @@ describe('Model Utitlity Functions', function () {
 
     describe('isBusy(): Check if there is an active http request', function () {
         it('is defined', function () {
-            assert.isFunction(model.fn.isBusy);
+            assert.isFunction(model.$fn.isBusy);
+        });
+    });
+
+    describe('isNew(): determine if a model is newly created', function () {
+        it('is defined', function () {
+            assert.isFunction(model.$fn.isNew);
+        });
+
+        it('determines if a model is new', function () {
+            var model1 = new Model({
+                    name: 'sqomp'
+                }),
+                model2 = new Model({
+                    id: 809,
+                    name: 'israel'
+                });
+
+            expect(model1.$fn.isNew()).to.be.true;
+            expect(model2.$fn.isNew()).to.be.false;
         });
     });
 });

@@ -26,7 +26,7 @@ describe('Model', function () {
     it('defines a utility functions namespace (fn)', function () {
         var model = new Model();
 
-        assert.isObject(model.fn, "No model utility functions namespace defined");
+        assert.isObject(model.$fn, "No model utility functions namespace defined");
     });
 
     xit('keeps local instances in sync', function () {
